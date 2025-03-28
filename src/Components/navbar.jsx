@@ -5,15 +5,15 @@ import { getItemSelector } from "../Redux/Slice/Slice";
 const Nav = () => {
   const items = useSelector(getItemSelector);
   // const items = useSelector(state => state)
-  console.log("item...", items);
-  console.log("legnth..", items.cartInit.length);
+  //console.log("item...", items);
 
   const total = items.cartInit.reduce((a, b) => a + b.price, 0);
 
+
   return (
     <div className="navbar bg-neutral text-neutral-content rounded-2xl mb-5">
-      <div className="flex-1">
-        <ul className="flex flex-col !text-red-400  p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md: dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <div className="flex-1 p-4">
+        <ul className="flex flex-col  p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md: dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
             <a
               href="/"
@@ -76,7 +76,7 @@ const Nav = () => {
           </div>
           <div
             tabIndex="0"
-            className="card card-compact bg-neutral text-neutral-content  dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
+            className="card card-compact bg-neutral !h-[200px] text-neutral-content  dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
           >
             <div className="card-body ">
               <span className="text-lg font-bold">
@@ -102,7 +102,7 @@ const Nav = () => {
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                src="https://i.pinimg.com/736x/35/11/87/351187cd779b1f8891cbef9ee89957e0.jpg"
               />
             </div>
           </div>

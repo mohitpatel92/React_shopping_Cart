@@ -7,7 +7,7 @@ const Product = (props) => {
   return (
     <div className="grid grid-cols-4 gap-4">
       {products.map((el) => (
-        <Cards price={el.price} name={el.product_name} img={el.image} key={el.id} />
+        <Cards price={el.price} name={el.product_name} img={el.image} id={el.id} />
       ))}
     </div>
   );

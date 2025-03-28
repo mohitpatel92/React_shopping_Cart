@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux" 
-import {addItems} from  "../Redux/Slice/Slice"
+import {addItems,removeItem} from  "../Redux/Slice/Slice"
 
 const Card = (props) => {
   const distpatch = useDispatch();
@@ -21,6 +21,7 @@ const Card = (props) => {
          <div className="px-5 pb-5">
            <a href="#">
              <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+             
                {props.name}
              </h5>
            </a>
@@ -38,13 +39,14 @@ const Card = (props) => {
    
 
     <div className="flex justify-between items-center space-x-2">
-      
+     
       <button onClick={(e) => distpatch(addItems({price:props.price,name:props.name,img:props.img,id:props.id}))}
         className="flex-1 bg-white/20 text-white rounded-lg px-3 py-2 text-xs font-medium transition duration-300 ease-in-out hover:bg-white/30 flex items-center justify-center"
       >
-       
        Add to cart
       </button>
+      
+      <button onClick={(e) => distpatch(removeItem({id:props.id }),console.log("id...",props.id))}> Delete </button>
     </div>
   </div>
 </div>

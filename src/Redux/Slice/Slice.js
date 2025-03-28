@@ -1,30 +1,38 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 
-// Initialize state with the value from localStorage, or fallback to an empty array
-const initialState ={
-  cartInit  : localStorage.getItem('React') ? JSON.parse(localStorage.getItem('React')) : []
-}
+const initialState = {
+  cartInit: localStorage.getItem("React")
+    ? JSON.parse(localStorage.getItem("React"))
+    : [],
+};
+
 
 
 export const CartSlice = createSlice({
   name: "cart",
-  //initialState: [], 
   initialState,
   reducers: {
     addItems: (state, action) => {
-      state.cartInit.push(action.payload); // Adds new items to the cart
-      localStorage.setItem('React',JSON.stringify(state.cartInit))
+      state.cartInit.push(action.payload); 
+      console.log("add...", action.payload);
+      localStorage.setItem("React", JSON.stringify(state.cartInit));
+    },
+    removeItem: (state, action) => {
+      
+      console.log("remove...", action.payload);
+      state.cartInit = state.cartInit.filter(
+        (item) => item.id !== action.payload.id
+      );
+      localStorage.setItem("React", JSON.stringify(state.cartInit));
     },
   },
 });
 
-// Create a selector to get the cart items from the state
 export const getItemSelector = createSelector(
-  (state) => state.cart, // The part of the state you need (cart items)
-  (cart) => cart // Return the cart items
+  (state) => state.cart,
+  (cart) => cart
 );
 
-export const { addItems } = CartSlice.actions;
+export const { addItems, removeItem } = CartSlice.actions;
 
 export default CartSlice.reducer;
-
