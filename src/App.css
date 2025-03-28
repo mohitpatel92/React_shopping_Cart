@@ -1,5 +1,76 @@
 @import "tailwindcss";
 
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+button {
+    @apply w-[130px] h-[38px]  cursor-pointer text-white text-[16px] relative transition-[0.1s] rounded-2xl border-[none] after:content-[''] after:w-full after:h-full after:bg-[radial-gradient(_circle_farthest-corner_at_10%_20%,rgba(255,94,247,1)_17.8%,rgba(2,245,255,1)_100.2%_)] after:blur-[15px] after:z-[-1] after:absolute after:left-0 after:top-0 active:rotate-3 active:transition-[0.5s] active:scale-90;
+    background: #071820;
+  }
+  button:active {
+    background: radial-gradient(
+      circle farthest-corner at 10% 20%,
+      rgba(255, 94, 247, 1) 17.8%,
+      rgba(2, 245, 255, 1) 100.2%
+    );
+  }
+  
+
+
+
+
+  /*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.main__heading {
+  @apply font-semibold text-[2.25em] text-center text-[#eceff1] mb-[0.75em];
+}
+.cards {
+  @apply relative;
+}
+.card {
+  @apply flex-[1_1_14rem] grid grid-rows-[auto_auto_auto_1fr] gap-[1.25em] text-[#eceff1] bg-[#2b2b2b] border px-[1em] py-[1em] rounded-[15px] border-solid border-[#eceff133] hover:text-black hover:shadow-[inset_0_0_80px_whitesmoke,inset_20px_0_80px_rgba(255,0,255,0.747),inset_-20px_0_80px_#0ff,inset_20px_0_300px_#f0f,inset_-20px_0_300px_#0ff,0_0_50px_#fff,-10px_0_80px_#f0f,10px_0_80px_#0ff] hover:transition-all hover:duration-[ease-in-out] hover:delay-[0.3s];
+  --flow-space: 0.5em;
+  --hsl: var(--hue), var(--saturation), var(--lightness);
+  align-items: start;
+}
+.card:nth-child(1) {
+  --hue: 165;
+  --saturation: 82.26%;
+  --lightness: 51.37%;
+}
+.card__bullets {
+  @apply leading-[1.4];
+}
+.card__heading {
+  @apply text-[1.05em] font-semibold;
+}
+.card__price {
+  @apply text-[1.75em] font-bold;
+}
+.flow > * + * {
+  @apply mt-[var(--flow-space,1.25em)];
+}
+.cta {
+  @apply block text-center no-underline text-white bg-transparent text-base font-semibold mt-[1em] mb-[0.5em] mx-0 p-[0.7em] rounded-[10px];
+  align-self: end;
+  outline: 1px solid white;
+}
+.card:hover {
+  --lightness: 80%;
+  background: #ffffff80;
+  outline: 1px solid rgb(255, 255, 255);
+}
+.card:hover > .cta {
+  @apply bg-[#0d0d0d];
+  outline: none;
+}
+
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

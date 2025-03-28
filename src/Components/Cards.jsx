@@ -5,31 +5,53 @@ import {addItems} from  "../Redux/Slice/Slice"
 const Card = (props) => {
   const distpatch = useDispatch();
   return (
-    <div className="p-3">
-      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img class="p-8 rounded-t-lg" src={props.img} alt="product image" />
-        </a>
-        <div class="px-5 pb-5">
-          <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-              {props.name}
-            </h5>
-          </a>
+    
+    
+     /* From Uiverse.io by Go3P */ 
+<div
+  className="card w-80 h-[400px] bg-[#07182E] rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,183,255,0.5)]"
+>
+  <div className="card-content  relative z-10">
 
-          <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">
-              ${props.price}
-            </span>
+   <div className="p-3">
+       <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+       <a href="#">
+           <img className="p-8 rounded-t-lg" src={props.img} alt="product image" />
+       </a>
+         <div className="px-5 pb-5">
+           <a href="#">
+             <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+               {props.name}
+             </h5>
+           </a>
 
-            <button onClick={(e) => distpatch(addItems({price:props.price,name:props.name,img:props.img}))} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Add to cart
-            </button>
-          </div>
-        </div>
-      </div>
+           <div className="flex items-center justify-between">
+             <span className="text-3xl font-bold text-gray-900 dark:text-white">
+               ${props.price}
+             </span>
+
+            
+           </div>
+         </div>
+       </div>
+     </div>
+   
+
+    <div className="flex justify-between items-center space-x-2">
+     
+      <button onClick={(e) => distpatch(addItems({price:props.price,name:props.name,img:props.img}))}
+        className="flex-1 bg-white/20 text-white rounded-lg px-3 py-2 text-xs font-medium transition duration-300 ease-in-out hover:bg-white/30 flex items-center justify-center"
+      >
+       
+       Add to cart
+      </button>
     </div>
+  </div>
+</div>
+
+    
+    
   );
 };
 
-export default Card;
+export default Card
