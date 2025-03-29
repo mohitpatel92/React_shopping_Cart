@@ -1,8 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getItemSelector } from "../Redux/Slice/Slice";
+import {useFirebase} from "../Context/FitebaseAuth"
 
 const Nav = () => {
+    const {user} = useFirebase()
+
   const items = useSelector(getItemSelector);
   // const items = useSelector(state => state)
   //console.log("item...", items);
@@ -20,7 +23,7 @@ const Nav = () => {
               className="block py-2 text-white px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               aria-current="page"
             >
-              Home
+              Home {user?.displayName}
             </a>
           </li>
           <li>
@@ -111,8 +114,8 @@ const Nav = () => {
             className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
-                Profile
+              <a className="justify-between" href="/register">
+                SignUp
                 <span className="badge">New</span>
               </a>
             </li>
@@ -120,7 +123,7 @@ const Nav = () => {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a href="/login"> Sign IN</a>
             </li>
           </ul>
         </div>
