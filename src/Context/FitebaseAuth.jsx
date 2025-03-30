@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  signOut
 } from "firebase/auth";
 
 const FirebaseContext = createContext(null);
@@ -31,14 +32,14 @@ export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
-      console.log("user...", user);
+      //console.log("user...", user);
       if (user) setUser(user);
       else setUser(null);
     });
   }, []);
 
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(firebaseAuth, email, password);
+  const createUser = (name,email, password) => {
+    return createUserWithEmailAndPassword(firebaseAuth,name, email, password);
   };
 
   const SigninUser = (email, password) => {
@@ -47,11 +48,13 @@ export const FirebaseProvider = (props) => {
 
   const signInwithGoogle = () => signInWithPopup(firebaseAuth, googleProvider);
 
+  const Logout = () => signOut(firebaseAuth)
+
   const isLoggedIn = user ? true :false
 
   return (
     <FirebaseContext.Provider
-      value={{ createUser, SigninUser, signInwithGoogle,isLoggedIn,user }}
+      value={{ createUser, SigninUser, signInwithGoogle,isLoggedIn,user,Logout }}
     >
       {props.children}
     </FirebaseContext.Provider>

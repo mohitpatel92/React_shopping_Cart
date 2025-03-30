@@ -1,9 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItems, removeItem } from "../Redux/Slice/Slice";
+import {
+  removeItem,
+  incrementQuntiry,
+  decrementQuntity,
+} from "../Redux/Slice/Slice";
+import { useSelector } from "react-redux";
+import { getItemSelector } from "../Redux/Slice/Slice";
 
 const Card = (props) => {
   const distpatch = useDispatch();
+  const items = useSelector(getItemSelector);
+  console.log("Cart Items...", items.cartInit);
+
+  const item = items.cartInit.find((el) => el.id === props.id);
+  const quantity = item ? item.quantity : 0;
+  //const plus = item ? item.quantity += 1 : item.quantity
+
   return (
     /* From Uiverse.io by Go3P */
     <div className="card w-80 h-[400px] bg-[#07182E] rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,183,255,0.5)]">
@@ -33,34 +46,36 @@ const Card = (props) => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center space-x-2">
-          <button
-            onClick={(e) =>
-              distpatch(
-                addItems({
-                  price: props.price,
-                  name: props.name,
-                  img: props.img,
-                  id: props.id,
-                })
-              )
-            }
-            className="flex-1 bg-white/20 text-white rounded-lg px-3 py-2 text-xs font-medium transition duration-300 ease-in-out hover:bg-white/30 flex items-center justify-center"
-          >
-            Add to cart
-          </button>
+        <div className="flex justify-evenly items-center space-x-2">
+          <div className="flex justify-evenly items-center gap-2">
+            <button
+              className="!w-[30px]"
+              onClick={() => distpatch(incrementQuntiry({ id: props.id }))}
+            >
+              +
+            </button>
+            <button className="!w-[60px]">Items</button>
+            <button
+              className="!w-[30px]"
+              onClick={() => distpatch(decrementQuntity({ id: props.id }))}
+            >
+              -
+            </button>
+          </div>
 
           <button
             onClick={(e) =>
               distpatch(
-                removeItem({ id: props.id }),
-                console.log("id...", props.id)
+                removeItem({ id: props.id }),                
               )
             }
           >
-            {" "}
-            Delete{" "}
+            Delete
           </button>
+        </div>
+
+        <div className="flex justify-evenly items-center mt-2">
+          <label> Qunatity : {quantity} </label>
         </div>
       </div>
     </div>
@@ -68,3 +83,5 @@ const Card = (props) => {
 };
 
 export default Card;
+
+

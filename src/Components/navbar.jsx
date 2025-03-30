@@ -1,10 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getItemSelector } from "../Redux/Slice/Slice";
-import {useFirebase} from "../Context/FitebaseAuth"
+import { useFirebase } from "../Context/FitebaseAuth";
+
+
 
 const Nav = () => {
-    const {user} = useFirebase()
+  const { user,Logout } = useFirebase();
+  //console.log("firebase..",useFirebase());
+  
+
 
   const items = useSelector(getItemSelector);
   // const items = useSelector(state => state)
@@ -23,7 +28,7 @@ const Nav = () => {
               className="block py-2 text-white px-3  rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               aria-current="page"
             >
-              Home {user?.displayName}
+              Home
             </a>
           </li>
           <li>
@@ -52,11 +57,11 @@ const Nav = () => {
           </li>
         </ul>
       </div>
-      <div className="flex  w-28 justify-between">
+      <div className="flex items-center justify-center space-x-4 w-[350px]">
+        <div className="">Welcome {user?.displayName || user?.email}</div>
         <div className="dropdown dropdown-end">
           <div tabIndex="0" role="button" className="btn btn-ghost btn-circle">
             <div className="indicator">
-            
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -112,19 +117,25 @@ const Nav = () => {
           <ul
             tabIndex="0"
             className="menu menu-sm dropdown-content bg-neutral text-neutral-content rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between" href="/register">
-                SignUp
-                <span className="badge">New</span>
-              </a>
-            </li>
+          >{user ? '' : <li>
+            <a className="justify-between" href="/register">
+              SignUp
+              <span className="badge">New</span>
+            </a>
+          </li>}
+            
             <li>
               <a>Settings</a>
             </li>
-            <li>
-              <a href="/login"> Sign IN</a>
-            </li>
+            {user ? (
+              <li>
+                <a onClick={()=>Logout()}> Log Out</a>
+              </li>
+            ) : (
+              <li>
+                <a href="/login">Sign In </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -133,6 +144,5 @@ const Nav = () => {
 };
 
 export default Nav;
-
 
 
